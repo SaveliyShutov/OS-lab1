@@ -32,7 +32,6 @@ def get_windows_version():
         if result != 0:
             return "Unknown Windows Version"
         
-        # Формируем человекочитаемую строку версии
         return f"Windows {info.dwMajorVersion}.{info.dwMinorVersion} (Build {info.dwBuildNumber})"
     except Exception as e:
         return f"Error retrieving Windows version: {str(e)}"
@@ -42,9 +41,9 @@ def get_computer_user_names():
     # Берём имя компьютера из окружения
     computer = os.environ.get("COMPUTERNAME", "Unknown")
     try:
-        user = os.getlogin()  # пытаемся получить логин текущего пользователя
+        user = os.getlogin()
     except Exception:
-        user = os.environ.get("USERNAME", "Unknown")  # fallback на переменную окружения
+        user = os.environ.get("USERNAME", "Unknown")
     return computer, user
 
 def get_system_info():
@@ -74,7 +73,6 @@ def get_system_info():
         5: "ARM",
         12: "ARM64"
     }
-    # Переводим код архитектуры в строку
     arch = arch_map.get(info.wProcessorArchitecture, f"Unknown ({info.wProcessorArchitecture})")
     
     return info.dwNumberOfProcessors, arch
