@@ -46,7 +46,6 @@ def list_drives():
     return drives
 
 def main():
-    # Собирает и выводит полную системную информацию
     uname = platform.uname()
     os_name = get_os_name()
     meminfo = read_meminfo()
